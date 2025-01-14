@@ -1,15 +1,29 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "**/*",
-      "use": "@vercel/static"
-    }
-  ],
+  "framework": null,
+  "buildCommand": null,
+  "devCommand": null,
+  "outputDirectory": ".",
+  "public": true,
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.+)",
       "dest": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ]
 } 
